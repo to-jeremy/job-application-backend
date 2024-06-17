@@ -2,7 +2,7 @@
 
 Application web qui permet d'avoir une liste des candidatures à faire ainsi qu'un tableau qui récapitule les candidatures qui ont été faites.
 
-Cette partie est réalisé en Node.js pour le <b>côté serveur</b> avec des fichiers JSON pour le stockage des données. <b>Pour avoir aperçu du côté client</b>, il faut se rendre sur ce repertoire suivant ->
+Cette partie est réalisé en Node.js pour le <b>côté serveur</b> avec des fichiers JSON pour le stockage des données. <b>Pour avoir aperçu du côté client</b>, il faut se rendre sur le repertoire suivant -> https://github.com/to-jeremy/job-application-frontend
 
 Futur projet -> Faire une application mobile pour les smartphones Android.
 

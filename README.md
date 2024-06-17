@@ -4,8 +4,6 @@ Application web qui permet d'avoir une liste des candidatures à faire ainsi qu'
 
 Cette partie est réalisé en Node.js pour le <b>côté serveur</b> avec des fichiers JSON pour le stockage des données. <b>Pour avoir aperçu du côté client</b>, il faut se rendre sur le repertoire suivant -> https://github.com/to-jeremy/job-application-frontend
 
-Futur projet -> Faire une application mobile pour les smartphones Android.
-
 Voici les fonctionnalités serveur de l'application web :
 
 - ToDo List
@@ -38,3 +36,7 @@ Futurs fonctionnalités :
 - Système d'authentification avec des comptes
 
 - Mettre une base de données avec SQL ou MongoDB <b>(si il y a des possibilités)</b>
+
+Futur projet :
+
+- Faire une application mobile pour les smartphones Android.

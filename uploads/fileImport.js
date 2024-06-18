@@ -23,12 +23,13 @@ const importFile = (file, res) => {
         }
 
         // Trouver le dernier ID existant dans les données existantes
-        let lastId = 0;
+        /*let lastId = 0;
         if (existingData.length > 0) {
             lastId = existingData[existingData.length - 1].id;
-        }
+        }*/
 
         const counterData = JSON.parse(fs.readFileSync(idCounterPath, 'utf-8'));
+        let nextId = counterData.candidatureId + 1;
 
         const excelDateToJSDate = (serial) => {
             const millisecondsPerDay = 24 * 60 * 60 * 1000;
@@ -50,7 +51,7 @@ const importFile = (file, res) => {
 
         // Transformer les données en format souhaité et attribuer les nouveaux IDs
         const transformedData = jsonData.map((entry, index) => ({
-            id: lastId + index + 1,
+            id: nextId + index,
             company: entry["Nom entreprise"] || '',
             position: entry["Nom du poste"] || '',
             link: entry["Lien internet du poste"] || '',
@@ -65,15 +66,13 @@ const importFile = (file, res) => {
             isFromTodoList: false
         }));
 
-        //console.log("transformedData", transformedData);
-
         // Filtrer les données pour éviter les doublons
         const mergedData = [...existingData];
 
         transformedData.forEach(newCandidature => {
             const exists = mergedData.some(existingCandidature =>
                 existingCandidature.company === newCandidature.company &&
-                existingCandidature.position === newCandidature.position &&
+                existingCandidature.link === newCandidature.link &&
                 existingCandidature.date === newCandidature.date
             );
 
@@ -86,10 +85,10 @@ const importFile = (file, res) => {
         fs.writeFileSync(candidaturesFilePath, JSON.stringify(mergedData, null, 2));
 
         // Mettre à jour le compteur candidatureId dans le fichier idCounter.json
-        counterData.candidatureId = mergedData.length ? mergedData[mergedData.length - 1].id : 0;
+        counterData.candidatureId = nextId + transformedData.length - 1;
 
         // Mettre à jour le compteur taskId dans le fichier idCounter.json
-        counterData.taskId += mergedData.length ? mergedData[mergedData.length - 1].id : 0;
+        counterData.taskId = nextId + transformedData.length - 1;
         fs.writeFileSync(idCounterPath, JSON.stringify(counterData, null, 2));
 
         // Supprimer le fichier une fois qu'il a été traité
